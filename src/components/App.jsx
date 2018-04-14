@@ -1,9 +1,9 @@
-import './App.css';
 import React from 'react';
 import Grid from 'react-bootstrap/es/Grid';
 import ButtonToolbar from 'react-bootstrap/es/ButtonToolbar';
-import DropdownButton from 'react-bootstrap/es/DropdownButton';
 import MenuItem from 'react-bootstrap/es/MenuItem';
+import ContextDropdown from './ContextDropdown';
+import ContentFilter from './ContentFilter';
 
 
 const App = () => (
@@ -14,18 +14,11 @@ const App = () => (
 
     <Grid className="App-body">
       <ButtonToolbar>
-        <DropdownButton
-          title="Filters Group 1"
-          id="dropdown-filters-group-1"
-        >
-          <MenuItem>
-            Filter A
-          </MenuItem>
-          <MenuItem>
-            Filter B
-          </MenuItem>
-        </DropdownButton>
-        <DropdownButton
+        <ContextDropdown id="dropdown-filters-group-1" title="Filters Group 1">
+          <ContentFilter />
+        </ContextDropdown>
+
+        <ContextDropdown
           title="Filters Group 2"
           id="dropdown-filters-group-2"
         >
@@ -35,8 +28,8 @@ const App = () => (
           <MenuItem>
             Filter D
           </MenuItem>
-        </DropdownButton>
-        <DropdownButton
+        </ContextDropdown>
+        <ContextDropdown
           title="Filters Group 3"
           id="dropdown-filters-group-3"
         >
@@ -46,7 +39,7 @@ const App = () => (
           <MenuItem>
             Filter F
           </MenuItem>
-        </DropdownButton>
+        </ContextDropdown>
       </ButtonToolbar>
     </Grid>
   </div>
