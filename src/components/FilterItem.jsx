@@ -8,6 +8,7 @@ class FilterItem extends React.PureComponent {
     return React.Children.map(children, filter =>
       React.cloneElement(filter, {
         ref: this.props.getComponentRef,
+        onChange: this.props.onChange,
         setFilter,
         appliedValue,
       })

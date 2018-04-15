@@ -9,24 +9,31 @@ const DropdownMenuContext = React.createContext();
 
 export const withDropdownContext = Component => props => (
   <DropdownMenuContext.Consumer>
-    {({ getComponentRef }) => (
-      <Component {...props} getComponentRef={getComponentRef} />
+    {({ getComponentRef, onChange }) => (
+      <Component
+        {...props}
+        getComponentRef={getComponentRef}
+        onChange={onChange}
+      />
     )}
   </DropdownMenuContext.Consumer>
 );
 
-
 class ApplyDropdown extends React.Component {
   static FilterItem = withDropdownContext(FilterItem);
+
+  static INITIAL_STATE = {
+    dropdownOpen: false,
+    filtersChanged: false,
+  };
 
   constructor(props) {
     super(props);
 
-    this.state = {
-      dropdownOpen: false,
-    };
+    this.state = ApplyDropdown.INITIAL_STATE;
 
     this.handleRef = this.handleRef.bind(this);
+    this.updateFiltersChanged = this.updateFiltersChanged.bind(this);
     this.handleDropdownToggle = this.handleDropdownToggle.bind(this);
     this.handleCancelClick = this.handleCancelClick.bind(this);
     this.handleApplyClick = this.handleApplyClick.bind(this);
@@ -35,7 +42,8 @@ class ApplyDropdown extends React.Component {
     this.childrenFilters = [];
 
     this.filterContext = {
-      getComponentRef: this.handleRef
+      getComponentRef: this.handleRef,
+      onChange: this.updateFiltersChanged,
     };
   }
 
@@ -44,17 +52,22 @@ class ApplyDropdown extends React.Component {
   }
 
   handleDropdownToggle(isOpen) {
-    this.setState({ dropdownOpen: isOpen });
+    const newState = { dropdownOpen: isOpen };
 
-    this.childrenFilters.forEach(filter => {
-      filter.restoreFilter();
-    });
+    if (isOpen) {
+      this.childrenFilters.forEach(filter => {
+        filter.restoreFilter();
+      });
+      newState.filtersChanged = false;
+    }
+
+    this.setState(newState);
   }
 
   handleCancelClick(event) {
     event.preventDefault();
 
-    this.setState({ dropdownOpen: false });
+    this.setState(ApplyDropdown.INITIAL_STATE);
 
     this.childrenFilters.forEach(filter => {
       filter.restoreFilter();
@@ -64,15 +77,21 @@ class ApplyDropdown extends React.Component {
   handleApplyClick(event) {
     event.preventDefault();
 
-    this.setState({ dropdownOpen: false });
+    this.setState(ApplyDropdown.INITIAL_STATE);
 
     this.childrenFilters.forEach(filter => {
       filter.applyFilter();
     });
   }
 
+  updateFiltersChanged() {
+    const changed = this.childrenFilters.some(filter => filter.hasChanged());
+
+    this.setState({ filtersChanged: changed });
+  }
+
   render() {
-    const { dropdownOpen } = this.state;
+    const { dropdownOpen, filtersChanged } = this.state;
 
     return (
       <Dropdown
@@ -96,7 +115,13 @@ class ApplyDropdown extends React.Component {
 
           <ButtonToolbar className="ContextDropdown-buttons">
             <Button bsSize="small" bsStyle="link" onClick={this.handleCancelClick}>Cancel</Button>
-            <Button bsSize="small" bsStyle="default" onClick={this.handleApplyClick}>Apply</Button>
+            <Button
+              bsSize="small"
+              bsStyle={filtersChanged ? 'success' : 'default'}
+              onClick={this.handleApplyClick}
+            >
+              Apply
+            </Button>
           </ButtonToolbar>
         </Dropdown.Menu>
       </Dropdown>

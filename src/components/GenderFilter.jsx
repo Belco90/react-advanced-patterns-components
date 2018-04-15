@@ -15,7 +15,7 @@ class GenderFilter extends React.Component {
   }
 
   handleOptionSelected(event) {
-    this.setState({ value: event.target.value });
+    this.setState({ value: event.target.value }, this.props.onChange);
   }
 
   applyFilter() {
@@ -24,6 +24,10 @@ class GenderFilter extends React.Component {
 
   restoreFilter() {
     this.setState({ value: this.props.appliedValue });
+  }
+
+  hasChanged() {
+    return this.state.value !== this.props.appliedValue;
   }
 
   render() {
