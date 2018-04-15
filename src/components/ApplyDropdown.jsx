@@ -3,8 +3,22 @@ import Button from 'react-bootstrap/es/Button';
 import ButtonToolbar from 'react-bootstrap/es/ButtonToolbar';
 import Dropdown from 'react-bootstrap/es/Dropdown';
 import MenuItem from 'react-bootstrap/es/MenuItem';
+import FilterItem from './FilterItem';
 
-class ContextDropdown extends React.Component {
+const DropdownMenuContext = React.createContext();
+
+const withDropdownContext = Component => props => (
+  <DropdownMenuContext.Consumer>
+    {({ getComponentRef }) => (
+      <Component {...props} getComponentRef={getComponentRef} />
+    )}
+  </DropdownMenuContext.Consumer>
+);
+
+
+class ApplyDropdown extends React.Component {
+  static FilterItem = withDropdownContext(FilterItem);
+
   constructor(props) {
     super(props);
 
@@ -12,13 +26,29 @@ class ContextDropdown extends React.Component {
       dropdownOpen: false,
     };
 
+    this.handleRef = this.handleRef.bind(this);
     this.handleDropdownToggle = this.handleDropdownToggle.bind(this);
     this.handleCancelClick = this.handleCancelClick.bind(this);
     this.handleApplyClick = this.handleApplyClick.bind(this);
+
+    // keep refs to FilterItem children
+    this.childrenFilters = [];
+
+    this.filterContext = {
+      getComponentRef: this.handleRef
+    };
+  }
+
+  handleRef(filter) {
+    this.childrenFilters.push(filter);
   }
 
   handleDropdownToggle(isOpen) {
     this.setState({ dropdownOpen: isOpen });
+
+    this.childrenFilters.forEach(filter => {
+      filter.restoreFilter();
+    });
   }
 
   handleCancelClick(event) {
@@ -26,7 +56,9 @@ class ContextDropdown extends React.Component {
 
     this.setState({ dropdownOpen: false });
 
-    console.log('TODO: restore filters');
+    this.childrenFilters.forEach(filter => {
+      filter.restoreFilter();
+    });
   }
 
   handleApplyClick(event) {
@@ -34,11 +66,13 @@ class ContextDropdown extends React.Component {
 
     this.setState({ dropdownOpen: false });
 
-    console.log('TODO: apply filters');
+    this.childrenFilters.forEach(filter => {
+      filter.applyFilter();
+    });
   }
 
   render() {
-    const { dropdownOpen } =this.state;
+    const { dropdownOpen } = this.state;
 
     return (
       <Dropdown
@@ -53,7 +87,9 @@ class ContextDropdown extends React.Component {
 
         <Dropdown.Menu>
           <div className="ContextDropdown-children">
-            {this.props.children}
+            <DropdownMenuContext.Provider value={this.filterContext}>
+              {this.props.children}
+            </DropdownMenuContext.Provider>
           </div>
 
           <MenuItem divider />
@@ -68,4 +104,4 @@ class ContextDropdown extends React.Component {
   }
 }
 
-export default ContextDropdown;
+export default ApplyDropdown;
