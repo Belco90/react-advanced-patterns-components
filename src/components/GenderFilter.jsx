@@ -35,7 +35,7 @@ class GenderFilter extends React.Component {
 
     return (
       <FormGroup controlId="GenderFilterSelect">
-        <ControlLabel>Content</ControlLabel>
+        <ControlLabel>Gender</ControlLabel>
         <FormControl componentClass="select" value={value}>
           <option value="" onClick={this.handleOptionSelected}>All</option>
           <option value="female" onClick={this.handleOptionSelected}>Female</option>
