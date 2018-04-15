@@ -19,6 +19,10 @@ body {
   margin-top: 30px;
 }
 
+.App-col-separator {
+  border-left: solid 1px #aaa;
+}
+
 .ContextDropdown-children {
   padding: 5px 15px;
   min-width: 300px;

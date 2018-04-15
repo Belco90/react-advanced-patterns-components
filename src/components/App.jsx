@@ -1,58 +1,97 @@
 import React from 'react';
+import Button from 'react-bootstrap/es/Button';
 import Col from 'react-bootstrap/es/Col';
 import Grid from 'react-bootstrap/es/Grid';
 import ButtonToolbar from 'react-bootstrap/es/ButtonToolbar';
-import MenuItem from 'react-bootstrap/es/MenuItem';
 import Row from 'react-bootstrap/es/Row';
+import { connect } from 'react-redux';
+import { setContentFilter } from '../ducks/content-filter';
+import { setGenderFilter } from '../ducks/gender-filter';
 import ApplyDropdown from './ApplyDropdown';
 import ContentFilter from './ContentFilter';
+import GenderFilter from './GenderFilter';
 
 
-const App = () => (
-  <div className="App">
-    <header className="App-header">
-      <h1 className="App-title">React Context API example</h1>
-    </header>
+class App extends React.PureComponent {
+  constructor(props){
+    super(props);
 
-    <Grid className="App-body">
-      <ButtonToolbar>
-        <ApplyDropdown id="dropdown-filters-group-1" title="Filters Group 1">
+   this.handleClearClick = this.handleClearClick.bind(this);
+  }
+
+  handleClearClick(event) {
+    event.preventDefault();
+
+    this.props.setContentFilter('');
+    this.props.setGenderFilter('');
+  }
+
+  render() {
+    const {
+      setContentFilter,
+      contentFilterValue,
+      setGenderFilter,
+      genderFilterValue,
+      reduxState,
+    } = this.props;
+
+    return (
+      <div className="App">
+        <header className="App-header">
+          <h1 className="App-title">React Context API example</h1>
+        </header>
+
+        <Grid className="App-body">
           <Row>
-            <Col xs={6}>
-              <ApplyDropdown.FilterItem>
-                <ContentFilter />
-              </ApplyDropdown.FilterItem>
+            <Col md={8}>
+              <ButtonToolbar>
+                <ApplyDropdown id="dropdown-filters-group-1" title="Filters Group 1">
+                  <Row>
+                    <Col xs={6}>
+                      <ApplyDropdown.FilterItem
+                        setFilter={setContentFilter}
+                        appliedValue={contentFilterValue}
+                      >
+                        <ContentFilter />
+                      </ApplyDropdown.FilterItem>
+                    </Col>
+
+                    <Col xs={6}>
+                      <ApplyDropdown.FilterItem
+                        setFilter={setGenderFilter}
+                        appliedValue={genderFilterValue}
+                      >
+                        <GenderFilter />
+                      </ApplyDropdown.FilterItem>
+                    </Col>
+                  </Row>
+                </ApplyDropdown>
+              </ButtonToolbar>
+            </Col>
+
+            <Col md={4} className="App-col-separator">
+              <h4>Current Redux State:</h4>
+              <div>
+                <pre>{JSON.stringify(reduxState, null, 2)}</pre>
+                <Button bsStyle="link" onClick={this.handleClearClick}>Clear all</Button>
+              </div>
             </Col>
           </Row>
-        </ApplyDropdown>
+        </Grid>
+      </div>
+    );
+  }
+}
 
-        <ApplyDropdown
-          title="Filters Group 2"
-          id="dropdown-filters-group-2"
-        >
-          <MenuItem>
-            Filter C
-          </MenuItem>
-          <MenuItem>
-            Filter D
-          </MenuItem>
-        </ApplyDropdown>
+const mapStateToProps = state => ({
+  reduxState: state,
+  contentFilterValue: state.contentFilter,
+  genderFilterValue: state.genderFilter,
+});
 
-        <ApplyDropdown
-          title="Filters Group 3"
-          id="dropdown-filters-group-3"
-        >
-          <MenuItem>
-            Filter E
-          </MenuItem>
-          <MenuItem>
-            Filter F
-          </MenuItem>
-        </ApplyDropdown>
+const mapDispatchToProps = {
+  setContentFilter,
+  setGenderFilter,
+};
 
-      </ButtonToolbar>
-    </Grid>
-  </div>
-);
-
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

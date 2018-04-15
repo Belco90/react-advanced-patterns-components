@@ -7,7 +7,7 @@ import FilterItem from './FilterItem';
 
 const DropdownMenuContext = React.createContext();
 
-const withDropdownContext = Component => props => (
+export const withDropdownContext = Component => props => (
   <DropdownMenuContext.Consumer>
     {({ getComponentRef }) => (
       <Component {...props} getComponentRef={getComponentRef} />

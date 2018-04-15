@@ -8,7 +8,7 @@ class ContentFilter extends React.Component {
     super(props);
 
     this.state = {
-      value: '',
+      value: props.appliedValue,
     };
 
     this.handleOptionSelected = this.handleOptionSelected.bind(this);
@@ -19,13 +19,11 @@ class ContentFilter extends React.Component {
   }
 
   applyFilter() {
-    const { value } = this.state;
-
-    console.log(`set value '${value}' in redux store`);
+    this.props.setFilter(this.state.value);
   }
 
   restoreFilter() {
-    console.log('restore filter');
+    this.setState({ value: this.props.appliedValue });
   }
 
   render() {
