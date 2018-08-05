@@ -12,7 +12,7 @@ export const withDropdownContext = Component => props => (
     {({ getComponentRef, onChange }) => (
       <Component
         {...props}
-        getComponentRef={getComponentRef}
+        ref={getComponentRef}
         onChange={onChange}
       />
     )}
@@ -20,23 +20,14 @@ export const withDropdownContext = Component => props => (
 );
 
 class ApplyDropdown extends React.Component {
-  static FilterItem = withDropdownContext(FilterItem);
 
-  static INITIAL_STATE = {
+  state = {
     dropdownOpen: false,
     filtersChanged: false,
   };
 
   constructor(props) {
     super(props);
-
-    this.state = ApplyDropdown.INITIAL_STATE;
-
-    this.handleRef = this.handleRef.bind(this);
-    this.updateFiltersChanged = this.updateFiltersChanged.bind(this);
-    this.handleDropdownToggle = this.handleDropdownToggle.bind(this);
-    this.handleCancelClick = this.handleCancelClick.bind(this);
-    this.handleApplyClick = this.handleApplyClick.bind(this);
 
     // keep refs to FilterItem children
     this.childrenFilters = [];
@@ -47,11 +38,11 @@ class ApplyDropdown extends React.Component {
     };
   }
 
-  handleRef(filter) {
+  handleRef = filter => {
     this.childrenFilters.push(filter);
-  }
+  };
 
-  handleDropdownToggle(isOpen) {
+  handleDropdownToggle = isOpen => {
     const newState = { dropdownOpen: isOpen };
 
     if (isOpen) {
@@ -62,33 +53,39 @@ class ApplyDropdown extends React.Component {
     }
 
     this.setState(newState);
-  }
+  };
 
-  handleCancelClick(event) {
+  handleCancelClick = event => {
     event.preventDefault();
 
-    this.setState(ApplyDropdown.INITIAL_STATE);
+    this.setState({
+      dropdownOpen: false,
+      filtersChanged: false,
+    });
 
     this.childrenFilters.forEach(filter => {
       filter.restoreFilter();
     });
-  }
+  };
 
-  handleApplyClick(event) {
+  handleApplyClick = event => {
     event.preventDefault();
 
-    this.setState(ApplyDropdown.INITIAL_STATE);
+    this.setState({
+      dropdownOpen: false,
+      filtersChanged: false,
+    });
 
     this.childrenFilters.forEach(filter => {
       filter.applyFilter();
     });
-  }
+  };
 
-  updateFiltersChanged() {
+  updateFiltersChanged = () => {
     const changed = this.childrenFilters.some(filter => filter.hasChanged());
 
     this.setState({ filtersChanged: changed });
-  }
+  };
 
   render() {
     const { dropdownOpen, filtersChanged } = this.state;
@@ -119,6 +116,7 @@ class ApplyDropdown extends React.Component {
               bsSize="small"
               bsStyle={filtersChanged ? 'success' : 'default'}
               onClick={this.handleApplyClick}
+              disabled={!filtersChanged}
             >
               Apply
             </Button>
@@ -128,5 +126,7 @@ class ApplyDropdown extends React.Component {
     );
   }
 }
+
+ApplyDropdown.FilterItem = withDropdownContext(FilterItem);
 
 export default ApplyDropdown;
