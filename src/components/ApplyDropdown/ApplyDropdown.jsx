@@ -42,17 +42,19 @@ class ApplyDropdown extends React.Component {
     this.childrenFilters.push(filter);
   };
 
-  handleDropdownToggle = isOpen => {
-    const newState = { dropdownOpen: isOpen };
+  handleDropdownToggle = (isOpen, event) => {
+    if (typeof event !== 'undefined') {
+      const newState = { dropdownOpen: isOpen };
 
-    if (isOpen) {
-      this.childrenFilters.forEach(filter => {
-        filter.restoreFilter();
-      });
-      newState.filtersChanged = false;
+      if (isOpen) {
+        this.childrenFilters.forEach(filter => {
+          filter.restoreFilter();
+        });
+        newState.filtersChanged = false;
+      }
+
+      this.setState(newState);
     }
-
-    this.setState(newState);
   };
 
   handleCancelClick = event => {

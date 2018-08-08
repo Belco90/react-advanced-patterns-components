@@ -5,16 +5,27 @@ import Grid from 'react-bootstrap/es/Grid';
 import ButtonToolbar from 'react-bootstrap/es/ButtonToolbar';
 import Row from 'react-bootstrap/es/Row';
 import { connect } from 'react-redux';
-import { clearAllFilters, setFiltersContent } from '../ducks/filters';
+import {
+  clearAllFilters,
+  setFiltersContent,
+  setFiltersStars,
+  setFiltersLocation,
+  setFiltersAge,
+} from '../ducks/filters';
 import ApplyDropdown from './ApplyDropdown/ApplyDropdown';
 import ContentFilter from './ContentFilter';
+import LocationFilter from './LocationFilter';
+import StarsFilter from './StarsFilter';
+import AgeFilter from './AgeFilter';
 
 
 class App extends React.PureComponent {
-  handleClearClick = () => { this.props.clearAllFilters() };
+  handleClearClick = () => {
+    this.props.clearAllFilters();
+  };
 
   render() {
-    const { reduxState } = this.props;
+    const { filters } = this.props;
 
     return (
       <div className="App">
@@ -33,22 +44,48 @@ class App extends React.PureComponent {
                   <Row>
                     <Col xs={6}>
                       <ApplyDropdown.FilterItem
-                        value={reduxState.filters.content}
+                        value={filters.content}
                         onApply={this.props.setFiltersContent}
                       >
                         <ContentFilter />
                       </ApplyDropdown.FilterItem>
                     </Col>
 
+                    <Col xs={6}>
+                      <ApplyDropdown.FilterItem
+                        value={filters.location}
+                        onApply={this.props.setFiltersLocation}
+                      >
+                        <LocationFilter />
+                      </ApplyDropdown.FilterItem>
+                    </Col>
                   </Row>
+                </ApplyDropdown>
+
+                <ApplyDropdown
+                  id="dropdown-filters-group-2"
+                  title="Filters Group 2"
+                >
+                  <ApplyDropdown.FilterItem
+                    value={filters.stars}
+                    onApply={this.props.setFiltersStars}
+                  >
+                    <StarsFilter />
+                  </ApplyDropdown.FilterItem>
+                  <ApplyDropdown.FilterItem
+                    value={filters.age}
+                    onApply={this.props.setFiltersAge}
+                  >
+                    <AgeFilter />
+                  </ApplyDropdown.FilterItem>
                 </ApplyDropdown>
               </ButtonToolbar>
             </Col>
 
             <Col md={4} className="App-col-separator">
-              <h4>Current Redux State:</h4>
+              <h4>Current Filters State:</h4>
               <div>
-                <pre>{JSON.stringify(reduxState, null, 2)}</pre>
+                <pre>{JSON.stringify(filters, null, 2)}</pre>
                 <Button bsStyle="link" onClick={this.handleClearClick}>
                   Clear all
                 </Button>
@@ -62,12 +99,15 @@ class App extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
-  reduxState: state,
+  filters: state.filters,
 });
 
 const mapDispatchToProps = {
   clearAllFilters,
   setFiltersContent,
+  setFiltersStars,
+  setFiltersLocation,
+  setFiltersAge,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
