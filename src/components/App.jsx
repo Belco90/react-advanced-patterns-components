@@ -9,6 +9,7 @@ import Glyphicon from 'react-bootstrap/es/Glyphicon';
 import { connect } from 'react-redux';
 import { isEqual } from 'lodash/lang';
 import { capitalize } from 'lodash/string';
+import { Facebook } from 'react-content-loader';
 
 import {
   initialState,
@@ -142,6 +143,8 @@ class App extends React.PureComponent {
               </ButtonToolbar>
 
               <hr />
+
+              <Facebook />
             </Col>
 
             <Col md={4} className="App-col-separator">

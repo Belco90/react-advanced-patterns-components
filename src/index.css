@@ -38,6 +38,7 @@ body {
 .App-applied-filters .label {
   margin-left: 5px;
   padding: .5em;
+  font-size: 80%;
 }
 
 .remove-tag-button {
