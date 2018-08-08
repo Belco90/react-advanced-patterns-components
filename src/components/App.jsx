@@ -5,13 +5,14 @@ import Grid from 'react-bootstrap/es/Grid';
 import ButtonToolbar from 'react-bootstrap/es/ButtonToolbar';
 import Row from 'react-bootstrap/es/Row';
 import { connect } from 'react-redux';
-import { setContentFilter } from '../ducks/content-filter';
-import { setGenderFilter } from '../ducks/gender-filter';
+import { clearAllFilters, setFiltersContent } from '../ducks/filters';
 import ApplyDropdown from './ApplyDropdown/ApplyDropdown';
 import ContentFilter from './ContentFilter';
 
 
 class App extends React.PureComponent {
+  handleClearClick = () => { this.props.clearAllFilters() };
+
   render() {
     const { reduxState } = this.props;
 
@@ -32,8 +33,8 @@ class App extends React.PureComponent {
                   <Row>
                     <Col xs={6}>
                       <ApplyDropdown.FilterItem
-                        value={reduxState.contentFilter}
-                        onApply={this.props.setContentFilter}
+                        value={reduxState.filters.content}
+                        onApply={this.props.setFiltersContent}
                       >
                         <ContentFilter />
                       </ApplyDropdown.FilterItem>
@@ -65,8 +66,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  setContentFilter,
-  setGenderFilter,
+  clearAllFilters,
+  setFiltersContent,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
