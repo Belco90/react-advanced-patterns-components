@@ -31,7 +31,7 @@ export const setFiltersAge = value => ({
 });
 
 // -STATE
-const initialState = {
+export const initialState = {
   content: '',
   stars: false,
   location: '',

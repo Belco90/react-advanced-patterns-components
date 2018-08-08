@@ -1,5 +1,5 @@
 import React from 'react';
-import { isEqual } from 'lodash';
+import { isEqual } from 'lodash/lang';
 
 class FilterItem extends React.Component {
 

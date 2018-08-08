@@ -38,6 +38,7 @@ class AgeFilter extends React.Component {
               value={this.props.value[0]}
               name="min"
               onChange={this.handleInputChange}
+              placeholder="min"
             />
           </Col>
 
@@ -51,6 +52,7 @@ class AgeFilter extends React.Component {
               value={this.props.value[1]}
               name="max"
               onChange={this.handleInputChange}
+              placeholder="max"
             />
           </Col>
         </Row>

@@ -23,9 +23,33 @@ body {
   border-left: solid 1px #aaa;
 }
 
+.App-filters-bar {
+  margin-bottom: 10px;
+}
+
+.App-applied-filters .btn-link {
+  padding: 0;
+}
+
+.App-applied-filters strong {
+  margin-left: 5px;
+}
+
+.App-applied-filters .label {
+  margin-left: 5px;
+  padding: .5em;
+}
+
+.remove-tag-button {
+  padding: 0 0 0 5px;
+  background: none;
+  color: white;
+  border: none;
+}
+
 .ContextDropdown-children {
   padding: 5px 15px;
-  min-width: 300px;
+  min-width: 400px;
 }
 
 .ContextDropdown-buttons {
