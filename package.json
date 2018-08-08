@@ -6,7 +6,6 @@
   "homepage": "https://belco90.github.io/react-context-dropdown-filter/",
   "license": "MIT",
   "dependencies": {
-    "gh-pages": "^1.2.0",
     "lodash": "^4.17.10",
     "react": "^16.4.2",
     "react-bootstrap": "^0.32.1",
@@ -15,6 +14,9 @@
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.4",
     "redux": "^4.0.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
