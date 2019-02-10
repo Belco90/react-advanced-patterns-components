@@ -1,7 +1,7 @@
 {
   "name": "react-context-dropdown-filter",
-  "description": "React component example to build a dropdown with several filters using new Context API",
-  "version": "0.1.0",
+  "description": "React component example to build a dropdown with several filters using Context API and advanced patterns",
+  "version": "2.0.0",
   "repository": "https://github.com/Belco90/react-context-dropdown-filter",
   "homepage": "https://belco90.github.io/react-context-dropdown-filter/",
   "license": "MIT",
@@ -11,9 +11,9 @@
     "react-bootstrap": "^0.32.1",
     "react-content-loader": "^3.1.2",
     "react-dom": "^16.8.1",
-    "react-redux": "^5.0.7",
+    "react-redux": "^6.0.0",
     "react-scripts": "^2.1.3",
-    "redux": "^4.0.0"
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "gh-pages": "^2.0.1"
