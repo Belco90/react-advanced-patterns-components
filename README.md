@@ -9,3 +9,4 @@ Using:
 - Bootstrap 3
 - Lodash 4
 - React Redux 5
+- Github Pages 2
