@@ -6,10 +6,10 @@
   "homepage": "https://belco90.github.io/react-context-dropdown-filter/",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.11",
     "react": "^16.8.1",
     "react-bootstrap": "^0.32.1",
-    "react-content-loader": "^3.1.2",
+    "react-content-loader": "^4.0.1",
     "react-dom": "^16.8.1",
     "react-redux": "^6.0.0",
     "react-scripts": "^2.1.3",
