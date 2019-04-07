@@ -1,22 +1,30 @@
 {
   "name": "react-context-dropdown-filter",
-  "description": "React component example to build a dropdown with several filters using new Context API",
-  "version": "0.1.0",
+  "description": "React example mixin advanced patterns",
+  "version": "2.0.0",
   "repository": "https://github.com/Belco90/react-context-dropdown-filter",
   "homepage": "https://belco90.github.io/react-context-dropdown-filter/",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.17.10",
-    "react": "^16.4.2",
-    "react-bootstrap": "^0.32.1",
-    "react-content-loader": "^3.1.2",
-    "react-dom": "^16.4.2",
-    "react-redux": "^5.0.7",
-    "react-scripts": "^2.1.3",
-    "redux": "^4.0.0"
+    "lodash": "^4.17.11",
+    "react": "^16.8.6",
+    "react-bootstrap": "^0.32.4",
+    "react-content-loader": "^4.2.1",
+    "react-dom": "^16.8.6",
+    "react-redux": "^6.0.1",
+    "react-scripts": "^2.1.8",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
-    "gh-pages": "^1.2.0"
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "gh-pages": "^2.0.1",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
+    "prettier": "1.16.4"
   },
   "scripts": {
     "start": "react-scripts start",
