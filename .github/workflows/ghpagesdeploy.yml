@@ -28,5 +28,3 @@ jobs:
         with:
           node-version: 12
       - run: npm run deploy
-        env:
-          CI: true
