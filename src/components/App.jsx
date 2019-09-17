@@ -18,13 +18,12 @@ import {
   setFiltersStars,
   setFiltersLocation,
   setFiltersAge,
-} from '../ducks/filters';
+} from 'ducks/filters';
 import ApplyDropdown from './ApplyDropdown/ApplyDropdown';
 import ContentFilter from './ContentFilter';
 import LocationFilter from './LocationFilter';
 import StarsFilter from './StarsFilter';
 import AgeFilter from './AgeFilter';
-
 
 class App extends React.PureComponent {
   handleClearClick = () => {
@@ -45,7 +44,7 @@ class App extends React.PureComponent {
     for (let filterName of Object.keys(filters)) {
       let filterValue = filters[filterName];
       if (!isEqual(filterValue, initialState[filterName])) {
-        filterTags.push({name: filterName, value: filterValue});
+        filterTags.push({ name: filterName, value: filterValue });
       }
     }
 
@@ -61,7 +60,9 @@ class App extends React.PureComponent {
           </Button>
           {filterTags.map(filter => (
             <Label bsStyle="info" key={filter.name}>
-              {filter.name}{': '}{filter.value.toString()}{' '}
+              {filter.name}
+              {': '}
+              {filter.value.toString()}{' '}
               <button
                 className="remove-tag-button"
                 onClick={this.handleTagClick}
@@ -170,4 +171,7 @@ const mapDispatchToProps = {
   setFiltersAge,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
