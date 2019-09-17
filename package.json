@@ -1,9 +1,9 @@
 {
-  "name": "react-context-dropdown-filter",
-  "description": "React example mixin advanced patterns",
+  "name": "react-advanced-patterns-components",
+  "description": "React advanced patterns components",
   "version": "2.0.0",
-  "repository": "https://github.com/Belco90/react-context-dropdown-filter",
-  "homepage": "https://belco90.github.io/react-context-dropdown-filter/",
+  "repository": "https://github.com/Belco90/react-advanced-patterns-components/",
+  "homepage": "https://belco90.github.io/react-advanced-patterns-components/",
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.15",
