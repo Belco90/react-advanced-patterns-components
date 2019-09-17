@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
-      - run: npm test:ci
+      - run: npm run test:ci
 
   publish-gh-pages:
     needs: build
@@ -27,6 +27,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm deploy
+      - run: npm run deploy
         env:
           CI: true
