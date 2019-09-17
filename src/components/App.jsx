@@ -85,7 +85,7 @@ class App extends React.PureComponent {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">React Context API example</h1>
+          <h1 className="App-title">React: advanced patterns components</h1>
         </header>
 
         <Grid className="App-body">

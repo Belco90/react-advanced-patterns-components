@@ -1,12 +1,5 @@
-# react-context-dropdown-filter
+# React: advanced patterns components
 
-React component example to build a dropdown with several filters using Context API and advanced patterns.
+Repo with different React components implementing several advanced patterns.
 
-Using: 
-- Create React App 2
-- React 16.8 (the one with hooks)
-- Redux 4
-- Bootstrap 3
-- Lodash 4
-- React Redux 6
-- Github Pages 2
+Go to the [storybook examples page](https://belco90.github.io/react-advanced-patterns-components/) or just check the code in this repo!
