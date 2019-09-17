@@ -29,6 +29,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
+    "test:ci": "CI=true npm test -- --passWithNoTests",
     "eject": "react-scripts eject"
   },
   "browserslist": {
