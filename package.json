@@ -2,8 +2,16 @@
   "name": "react-advanced-patterns-components",
   "description": "React advanced patterns components",
   "version": "2.0.0",
-  "repository": "https://github.com/Belco90/react-advanced-patterns-components/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Belco90/react-advanced-patterns-components.git"
+  },
   "homepage": "https://belco90.github.io/react-advanced-patterns-components/",
+  "author": {
+    "name": "Mario Beltrán Alarcón",
+    "email": "belco90@gmail.com",
+    "url": "https://mario.dev/"
+  },
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.15",
@@ -16,13 +24,14 @@
     "redux": "^4.0.4"
   },
   "devDependencies": {
-    "eslint-config-prettier": "^6.3.0",
-    "eslint-plugin-prettier": "^3.1.0",
+    "gh-pages": "^2.1.1",
     "husky": "^3.0.5",
     "lint-staged": "^9.2.5",
     "prettier": "1.18.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
