@@ -32,7 +32,7 @@ class App extends React.PureComponent {
   };
 
   handleTagClick = event => {
-    const { value: filterName } = event.target;
+    const { value: filterName } = event.currentTarget;
     const setMethodName = `setFilters${capitalize(filterName)}`;
 
     this.props[setMethodName](initialState[filterName]);
