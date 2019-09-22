@@ -11,6 +11,8 @@ import { isEqual } from 'lodash/lang';
 import { capitalize } from 'lodash/string';
 import { Facebook } from 'react-content-loader';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import {
   initialState,
   clearAllFilters,
