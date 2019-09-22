@@ -1,19 +1,11 @@
-import { applyMiddleware, compose, createStore } from 'redux';
+import { configureStore as reduxStarterKitConfigureStore } from 'redux-starter-kit';
 import reducer from './ducks';
 
-const middlewares = [];
-
 function configureStore(initialState = {}) {
-  const isProd = process.env.NODE_ENV === 'production';
-
-  const composeEnhancers =
-    (!isProd && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
-
-  return createStore(
+  return reduxStarterKitConfigureStore({
     reducer,
-    initialState,
-    composeEnhancers(applyMiddleware(...middlewares))
-  );
+    preloadedState: initialState,
+  });
 }
 
 export default configureStore;
