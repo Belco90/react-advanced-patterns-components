@@ -6,8 +6,4 @@ import { Provider } from 'react-redux';
 import 'index.css';
 
 export default { title: 'App' };
-export const defaultApp = () => (
-  <Provider store={configureStore()}>
-    <App />
-  </Provider>
-);
+export const defaultApp = () => <App />;
