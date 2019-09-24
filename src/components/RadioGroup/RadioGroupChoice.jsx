@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Radio from 'react-bootstrap/es/Radio';
+import { Radio } from 'react-bootstrap';
 
 import { useRadioGroupContext } from './radio-group-context';
 

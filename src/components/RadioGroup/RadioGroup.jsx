@@ -35,9 +35,7 @@ const RadioGroup = ({
       inline={inline}
       disabled={disabled}
     >
-      <div role="radiogroup" {...remainingProps}>
-        {children}
-      </div>
+      <fieldset {...remainingProps}>{children}</fieldset>
     </RadioGroupProvider>
   );
 };
