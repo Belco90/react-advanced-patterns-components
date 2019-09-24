@@ -2,24 +2,9 @@ import React from 'react';
 
 const RadioGroupContext = React.createContext();
 
-const RadioGroupProvider = ({
-  children,
-  selectedValue,
-  onChange,
-  name,
-  inline,
-  disabled,
-}) => {
-  const context = {
-    selectedValue,
-    onChange,
-    name,
-    inline,
-    disabled,
-  };
-
+const RadioGroupProvider = ({ children, ...remainingProps }) => {
   return (
-    <RadioGroupContext.Provider value={context}>
+    <RadioGroupContext.Provider value={remainingProps}>
       {children}
     </RadioGroupContext.Provider>
   );

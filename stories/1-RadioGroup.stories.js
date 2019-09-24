@@ -1,6 +1,7 @@
 import React from 'react';
+
 import RadioGroupUsingClassComponent from 'components/RadioGroupUsingClassComponent';
-import RadioGroup from 'components/RadioGroupUsingHooks';
+import RadioGroupUsingHooks from 'components/RadioGroupUsingHooks';
 
 export default {
   title: 'RadioGroup',
@@ -9,13 +10,15 @@ export default {
 const makeRadioGroup = Component => () => {
   const [value, setValue] = React.useState('a');
 
+  const handleChange = event => {
+    setValue(event.target.value);
+  };
+
   return (
     <Component
       selectedValue={value}
       name="RadioGroupUsingHooks"
-      onChange={event => {
-        setValue(event.target.value);
-      }}
+      onChange={handleChange}
     >
       <Component.Choice value="a">option A</Component.Choice>
       <Component.Choice value="b">option B</Component.Choice>
@@ -27,4 +30,4 @@ const makeRadioGroup = Component => () => {
 export const usingClassComponent = makeRadioGroup(
   RadioGroupUsingClassComponent
 );
-export const usingHooks = makeRadioGroup(RadioGroup);
+export const usingHooks = makeRadioGroup(RadioGroupUsingHooks);

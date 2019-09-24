@@ -33,8 +33,9 @@ const RadioGroupUsingHooks = ({
     name={name}
     inline={inline}
     disabled={disabled}
+    {...remainingProps}
   >
-    <fieldset {...remainingProps}>{children}</fieldset>
+    <fieldset>{children}</fieldset>
   </RadioGroupProvider>
 );
 

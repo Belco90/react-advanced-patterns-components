@@ -14,14 +14,23 @@ const defaultProps = {
   className: null,
 };
 
-const RadioGroupChoice = ({ children, value }) => {
+const RadioGroupChoice = ({ children, value, className }) => {
   const context = useRadioGroupContext();
-  const { selectedValue, ...remainingContext } = context;
+  const { selectedValue, onChange, name, inline, disabled } = context;
 
   const checked = value === selectedValue;
 
   return (
-    <Radio {...remainingContext} key={value} checked={checked} value={value}>
+    <Radio
+      key={value}
+      checked={checked}
+      name={name}
+      value={value}
+      onChange={onChange}
+      inline={inline}
+      disabled={disabled}
+      className={className}
+    >
       {children}
     </Radio>
   );
