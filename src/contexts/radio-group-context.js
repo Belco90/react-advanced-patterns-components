@@ -25,6 +25,19 @@ const RadioGroupProvider = ({
   );
 };
 
+const RadioGroupConsumer = ({ children }) => (
+  <RadioGroupContext.Consumer>
+    {context => {
+      if (context === undefined) {
+        throw new Error(
+          'RadioGroupConsumer must be used within a RadioGroupProvider'
+        );
+      }
+      return children(context);
+    }}
+  </RadioGroupContext.Consumer>
+);
+
 const useRadioGroupContext = () => {
   const context = React.useContext(RadioGroupContext);
 
@@ -37,4 +50,4 @@ const useRadioGroupContext = () => {
   return context;
 };
 
-export { RadioGroupProvider, useRadioGroupContext };
+export { RadioGroupProvider, RadioGroupConsumer, useRadioGroupContext };

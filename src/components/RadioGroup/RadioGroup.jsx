@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { RadioGroupProvider } from './radio-group-context';
+import { RadioGroupProvider } from 'contexts/radio-group-context';
 import RadioGroupChoice from './RadioGroupChoice';
 
 const propTypes = {
@@ -26,19 +26,17 @@ const RadioGroup = ({
   inline,
   disabled,
   ...remainingProps
-}) => {
-  return (
-    <RadioGroupProvider
-      selectedValue={selectedValue}
-      onChange={onChange}
-      name={name}
-      inline={inline}
-      disabled={disabled}
-    >
-      <fieldset {...remainingProps}>{children}</fieldset>
-    </RadioGroupProvider>
-  );
-};
+}) => (
+  <RadioGroupProvider
+    selectedValue={selectedValue}
+    onChange={onChange}
+    name={name}
+    inline={inline}
+    disabled={disabled}
+  >
+    <fieldset {...remainingProps}>{children}</fieldset>
+  </RadioGroupProvider>
+);
 
 RadioGroup.propTypes = propTypes;
 RadioGroup.defaultProps = defaultProps;

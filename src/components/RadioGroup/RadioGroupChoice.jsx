@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Radio } from 'react-bootstrap';
 
-import { useRadioGroupContext } from './radio-group-context';
+import { useRadioGroupContext } from 'contexts/radio-group-context';
 
 const propTypes = {
   value: PropTypes.string.isRequired,

@@ -1,24 +1,30 @@
 import React from 'react';
+import RadioGroupUsingClassComponent from 'components/RadioGroupUsingClassComponent';
 import RadioGroup from 'components/RadioGroup';
 
 export default {
   title: 'RadioGroup',
 };
 
-export const usingHooks = () => {
+const makeRadioGroup = Component => () => {
   const [value, setValue] = React.useState('a');
 
   return (
-    <RadioGroup
+    <Component
       selectedValue={value}
-      name="RadioGroup-story-stacked"
+      name="RadioGroupUsingHooks"
       onChange={event => {
         setValue(event.target.value);
       }}
     >
-      <RadioGroup.Choice value="a">option A</RadioGroup.Choice>
-      <RadioGroup.Choice value="b">option B</RadioGroup.Choice>
-      <RadioGroup.Choice value="c">option C</RadioGroup.Choice>
-    </RadioGroup>
+      <Component.Choice value="a">option A</Component.Choice>
+      <Component.Choice value="b">option B</Component.Choice>
+      <Component.Choice value="c">option C</Component.Choice>
+    </Component>
   );
 };
+
+export const usingClassComponent = makeRadioGroup(
+  RadioGroupUsingClassComponent
+);
+export const usingHooks = makeRadioGroup(RadioGroup);
