@@ -15,7 +15,6 @@ export const usingHooks = () => {
       onChange={event => {
         setValue(event.target.value);
       }}
-      disabled
     >
       <RadioGroup.Choice value="a">option A</RadioGroup.Choice>
       <RadioGroup.Choice value="b">option B</RadioGroup.Choice>
