@@ -1,0 +1,32 @@
+.root label {
+  width: 100%;
+  padding: 20px 30px 20px 50px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #596066;
+}
+
+.root input[type='radio'] {
+  padding-left: 30px;
+}
+
+.checked label {
+  background-color: #007bff33;
+}
+
+.checked.success label {
+  background-color: #28a74533;
+}
+
+.checked.danger label {
+  background-color: #dc354533;
+}
+
+.hideIndicator label {
+  padding-left: 30px;
+}
+
+.hideIndicator input[type='radio'] {
+  display: none;
+}
