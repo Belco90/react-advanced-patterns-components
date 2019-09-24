@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { RadioGroupProvider } from 'contexts/radio-group-context';
 import RadioGroupChoice from './RadioGroupChoice';
-import RadioGroup from 'components/RadioGroup';
 
 const propTypes = {
   selectedValue: PropTypes.string.isRequired,

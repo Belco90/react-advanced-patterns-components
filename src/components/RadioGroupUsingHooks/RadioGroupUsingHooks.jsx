@@ -18,7 +18,7 @@ const defaultProps = {
   disabled: false,
 };
 
-const RadioGroup = ({
+const RadioGroupUsingHooks = ({
   children,
   selectedValue,
   onChange,
@@ -38,9 +38,9 @@ const RadioGroup = ({
   </RadioGroupProvider>
 );
 
-RadioGroup.propTypes = propTypes;
-RadioGroup.defaultProps = defaultProps;
+RadioGroupUsingHooks.propTypes = propTypes;
+RadioGroupUsingHooks.defaultProps = defaultProps;
 
-RadioGroup.Choice = RadioGroupChoice;
+RadioGroupUsingHooks.Choice = RadioGroupChoice;
 
-export default RadioGroup;
+export default RadioGroupUsingHooks;

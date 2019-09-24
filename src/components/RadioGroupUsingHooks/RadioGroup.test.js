@@ -1,14 +1,14 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import RadioGroup from './RadioGroup';
+import RadioGroupUsingHooks from 'components/RadioGroupUsingHooks/RadioGroupUsingHooks';
 
 const TestingRadioGroup = props => {
   const [value, setValue] = React.useState('a');
 
   return (
     <form data-testid="testing-form">
-      <RadioGroup
+      <RadioGroupUsingHooks
         selectedValue={value}
         name="RadioGroup-testing"
         onChange={event => {
@@ -16,13 +16,19 @@ const TestingRadioGroup = props => {
         }}
         {...props}
       >
-        <RadioGroup.Choice value="a">option A</RadioGroup.Choice>
-        <RadioGroup.Choice value="b">option B</RadioGroup.Choice>
+        <RadioGroupUsingHooks.Choice value="a">
+          option A
+        </RadioGroupUsingHooks.Choice>
+        <RadioGroupUsingHooks.Choice value="b">
+          option B
+        </RadioGroupUsingHooks.Choice>
         <div>
           {/* div between radio group and choice to test it works at any level */}
-          <RadioGroup.Choice value="c">option C</RadioGroup.Choice>
+          <RadioGroupUsingHooks.Choice value="c">
+            option C
+          </RadioGroupUsingHooks.Choice>
         </div>
-      </RadioGroup>
+      </RadioGroupUsingHooks>
     </form>
   );
 };

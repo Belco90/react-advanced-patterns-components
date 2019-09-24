@@ -1,6 +1,6 @@
 import React from 'react';
 import RadioGroupUsingClassComponent from 'components/RadioGroupUsingClassComponent';
-import RadioGroup from 'components/RadioGroup';
+import RadioGroup from 'components/RadioGroupUsingHooks';
 
 export default {
   title: 'RadioGroup',
