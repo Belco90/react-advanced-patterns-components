@@ -1,0 +1,20 @@
+.appliedFilters :global .btn-link {
+  padding: 0;
+}
+
+.appliedFilters strong {
+  margin-left: 5px;
+}
+
+.appliedFilters :global .label {
+  margin-left: 5px;
+  padding: 0.5em;
+  font-size: 80%;
+}
+
+.removeTagButton {
+  padding: 0 0 0 5px;
+  background: none;
+  color: white;
+  border: none;
+}

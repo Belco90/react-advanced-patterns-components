@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Button,
   Col,
-  Grid,
   ButtonToolbar,
   Row,
   Label,
@@ -26,6 +25,7 @@ import StarsFilter from 'components/StarsFilter';
 import AgeFilter from 'components/AgeFilter';
 
 import ActionableDropdown from './ActionableDropdownUsingChildrenRefs';
+import styles from 'components/ActionableDropdownExample.module.css';
 
 class Example extends React.Component {
   handleClearClick = () => {
@@ -53,11 +53,7 @@ class Example extends React.Component {
     if (filterTags.length > 0) {
       return (
         <React.Fragment>
-          <Button
-            bsStyle="link"
-            onClick={this.handleClearClick}
-            className="App-clear-all-button"
-          >
+          <Button bsStyle="link" onClick={this.handleClearClick}>
             Clear all
           </Button>
           {filterTags.map(filter => (
@@ -66,9 +62,10 @@ class Example extends React.Component {
               {': '}
               {filter.value.toString()}{' '}
               <button
-                className="remove-tag-button"
+                className={styles.removeTagButton}
                 onClick={this.handleTagClick}
                 value={filter.name}
+                aria-label={`clear ${filter.name}`}
               >
                 <Glyphicon glyph="remove" />
               </button>
@@ -91,45 +88,54 @@ class Example extends React.Component {
     } = this.props;
 
     return (
-      <ActionableDropdown id="actionable-dropdown-filters" title="Filters">
-        <Row>
-          <Col xs={6}>
-            <ActionableDropdown.EditableItem
-              value={values.content}
-              onApply={setFiltersContent}
-            >
-              <ContentFilter />
-            </ActionableDropdown.EditableItem>
-          </Col>
+      <>
+        <ActionableDropdown id="actionable-dropdown-filters" title="Filters">
+          <Row>
+            <Col xs={6}>
+              <ActionableDropdown.EditableItem
+                value={values.content}
+                onApply={setFiltersContent}
+              >
+                <ContentFilter />
+              </ActionableDropdown.EditableItem>
+            </Col>
 
-          <Col xs={6}>
-            <ActionableDropdown.EditableItem
-              value={values.location}
-              onApply={setFiltersLocation}
-            >
-              <LocationFilter />
-            </ActionableDropdown.EditableItem>
-          </Col>
-        </Row>
+            <Col xs={6}>
+              <ActionableDropdown.EditableItem
+                value={values.location}
+                onApply={setFiltersLocation}
+              >
+                <LocationFilter />
+              </ActionableDropdown.EditableItem>
+            </Col>
+          </Row>
 
-        <ActionableDropdown.EditableItem
-          value={values.age}
-          onApply={setFiltersAge}
-        >
-          <AgeFilter />
-        </ActionableDropdown.EditableItem>
+          <ActionableDropdown.EditableItem
+            value={values.age}
+            onApply={setFiltersAge}
+          >
+            <AgeFilter />
+          </ActionableDropdown.EditableItem>
 
-        <Row>
-          <Col xs={6} xsOffset={6}>
-            <ActionableDropdown.EditableItem
-              value={values.stars}
-              onApply={setFiltersStars}
-            >
-              <StarsFilter />
-            </ActionableDropdown.EditableItem>
-          </Col>
-        </Row>
-      </ActionableDropdown>
+          <Row>
+            <Col xs={6} xsOffset={6}>
+              <ActionableDropdown.EditableItem
+                value={values.stars}
+                onApply={setFiltersStars}
+              >
+                <StarsFilter />
+              </ActionableDropdown.EditableItem>
+            </Col>
+          </Row>
+        </ActionableDropdown>
+
+        <hr />
+
+        <ButtonToolbar className={styles.appliedFilters}>
+          <strong className="pull-left">Applied filters:</strong>
+          {this.renderFilterTags()}
+        </ButtonToolbar>
+      </>
     );
   }
 }

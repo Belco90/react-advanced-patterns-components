@@ -1,10 +1,7 @@
 import React from 'react';
-import ControlLabel from 'react-bootstrap/es/ControlLabel';
-import FormControl from 'react-bootstrap/es/FormControl';
-import FormGroup from 'react-bootstrap/es/FormGroup';
+import { ControlLabel, FormControl, FormGroup } from 'react-bootstrap';
 
 class ContentFilter extends React.PureComponent {
-
   handleSelectChange = event => {
     this.props.onChange(event.target.value);
   };
@@ -15,6 +12,7 @@ class ContentFilter extends React.PureComponent {
         <ControlLabel>Content</ControlLabel>
         <FormControl
           componentClass="select"
+          name="content"
           value={this.props.value}
           onChange={this.handleSelectChange}
         >

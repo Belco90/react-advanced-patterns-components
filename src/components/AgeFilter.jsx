@@ -1,9 +1,11 @@
 import React from 'react';
-import ControlLabel from 'react-bootstrap/es/ControlLabel';
-import FormControl from 'react-bootstrap/es/FormControl';
-import FormGroup from 'react-bootstrap/es/FormGroup';
-import Col from 'react-bootstrap/es/Col';
-import Row from 'react-bootstrap/es/Row';
+import {
+  ControlLabel,
+  FormControl,
+  FormGroup,
+  Col,
+  Row,
+} from 'react-bootstrap';
 
 class AgeFilter extends React.Component {
   handleInputChange = event => {

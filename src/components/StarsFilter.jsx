@@ -1,9 +1,7 @@
 import React from 'react';
-import FormGroup from 'react-bootstrap/es/FormGroup';
-import Checkbox from 'react-bootstrap/es/Checkbox';
+import { Checkbox, FormGroup } from 'react-bootstrap';
 
 class StarsFilter extends React.PureComponent {
-
   handleCheckboxChange = event => {
     this.props.onChange(event.target.checked);
   };
@@ -13,6 +11,7 @@ class StarsFilter extends React.PureComponent {
       <FormGroup controlId="StarsFilterSelect">
         <Checkbox
           checked={this.props.value}
+          name="starred"
           onChange={this.handleCheckboxChange}
         >
           Only starred
