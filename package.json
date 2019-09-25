@@ -16,7 +16,7 @@
   "dependencies": {
     "bootstrap": "^3.4.1",
     "classnames": "^2.2.6",
-    "lodash": "^4.17.15",
+    "lodash.isequal": "^4.5.0",
     "react": "^16.9.0",
     "react-bootstrap": "^0.32.4",
     "react-content-loader": "^4.2.2",
@@ -43,6 +43,7 @@
     "prop-types": "^15.7.2"
   },
   "scripts": {
+    "cra": "react-scripts start",
     "deploy": "npm run deploy-storybook",
     "start": "npm run storybook",
     "build": "npm run build-storybook",

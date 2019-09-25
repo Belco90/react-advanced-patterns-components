@@ -32,7 +32,7 @@ class AgeFilter extends React.Component {
       <FormGroup controlId="AgeFilterSelect">
         <ControlLabel>Age</ControlLabel>
         <Row>
-          <Col xs={5}>
+          <Col xs={6}>
             <FormControl
               type="number"
               value={this.props.value[0]}
@@ -42,11 +42,7 @@ class AgeFilter extends React.Component {
             />
           </Col>
 
-          <Col xs={2}>
-            <FormControl.Static>To</FormControl.Static>
-          </Col>
-
-          <Col xs={5}>
+          <Col xs={6}>
             <FormControl
               type="number"
               value={this.props.value[1]}

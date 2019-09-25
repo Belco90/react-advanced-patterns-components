@@ -1,9 +1,14 @@
-// TODO: delete me
-
 import React from 'react';
-import { isEqual } from 'lodash/lang';
+import PropTypes from 'prop-types';
+import isEqual from 'lodash.isequal';
 
-class FilterItem extends React.Component {
+const propTypes = {
+  value: PropTypes.any.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onApply: PropTypes.func.isRequired,
+};
+
+class EditableItem extends React.Component {
   state = {
     modifiedValue: this.props.value,
   };
@@ -28,8 +33,8 @@ class FilterItem extends React.Component {
     const { children } = this.props;
     const { modifiedValue } = this.state;
 
-    return React.Children.map(children, filter =>
-      React.cloneElement(filter, {
+    return React.Children.map(children, child =>
+      React.cloneElement(child, {
         onChange: this.handleValueChange,
         value: modifiedValue,
       })
@@ -37,4 +42,6 @@ class FilterItem extends React.Component {
   }
 }
 
-export default FilterItem;
+EditableItem.propTypes = propTypes;
+
+export default EditableItem;

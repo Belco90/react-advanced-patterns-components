@@ -2,6 +2,7 @@ import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
 import { Provider } from 'react-redux';
 import configureStore from 'configureStore';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Wrapper = storyFn => (
   <div style={{ padding: '40px' }}>

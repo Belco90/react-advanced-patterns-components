@@ -1,3 +1,5 @@
+// TODO: delete me
+
 import React from 'react';
 import Button from 'react-bootstrap/es/Button';
 import Col from 'react-bootstrap/es/Col';
@@ -10,8 +12,6 @@ import { connect } from 'react-redux';
 import { isEqual } from 'lodash/lang';
 import { capitalize } from 'lodash/string';
 import { Facebook } from 'react-content-loader';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {
   initialState,

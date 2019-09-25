@@ -1,0 +1,10 @@
+.menu {
+  padding: 5px 15px;
+  min-width: 400px;
+}
+
+.buttonToolbar {
+  padding-left: 15px;
+  padding-right: 15px;
+  float: right !important;
+}

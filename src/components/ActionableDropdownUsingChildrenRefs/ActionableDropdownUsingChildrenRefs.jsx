@@ -1,23 +1,15 @@
-// TODO: delete me
-
 import React from 'react';
-import Button from 'react-bootstrap/es/Button';
-import ButtonToolbar from 'react-bootstrap/es/ButtonToolbar';
-import Dropdown from 'react-bootstrap/es/Dropdown';
-import MenuItem from 'react-bootstrap/es/MenuItem';
-import FilterItem from './FilterItem';
+import PropTypes from 'prop-types';
+import { Dropdown, MenuItem, ButtonToolbar, Button } from 'react-bootstrap';
 
-const DropdownMenuContext = React.createContext();
+import EditableItem from './EditableItem';
+import { withDropdownContext, DropdownProvider } from './dropdown-context';
 
-export const withDropdownContext = Component => props => (
-  <DropdownMenuContext.Consumer>
-    {({ getComponentRef, onChange }) => (
-      <Component {...props} ref={getComponentRef} onChange={onChange} />
-    )}
-  </DropdownMenuContext.Consumer>
-);
+import styles from 'components/ActionableDropdown.module.css';
 
-class ApplyDropdown extends React.Component {
+const propTypes = {};
+
+class ActionableDropdownUsingChildrenRefs extends React.Component {
   state = {
     dropdownOpen: false,
     filtersChanged: false,
@@ -26,7 +18,7 @@ class ApplyDropdown extends React.Component {
   constructor(props) {
     super(props);
 
-    // keep refs to FilterItem children
+    // keep refs to each EditableItem child
     this.childrenFilters = [];
 
     this.filterContext = {
@@ -92,22 +84,21 @@ class ApplyDropdown extends React.Component {
     return (
       <Dropdown
         id={this.props.id}
-        className="ContextDropdown"
         open={dropdownOpen}
         onToggle={this.handleDropdownToggle}
       >
         <Dropdown.Toggle>{this.props.title}</Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <div className="ContextDropdown-children">
-            <DropdownMenuContext.Provider value={this.filterContext}>
+          <div className={styles.menu}>
+            <DropdownProvider {...this.filterContext}>
               {this.props.children}
-            </DropdownMenuContext.Provider>
+            </DropdownProvider>
           </div>
 
           <MenuItem divider />
 
-          <ButtonToolbar className="ContextDropdown-buttons">
+          <ButtonToolbar className={styles.buttonToolbar}>
             <Button
               bsSize="small"
               bsStyle="link"
@@ -130,6 +121,10 @@ class ApplyDropdown extends React.Component {
   }
 }
 
-ApplyDropdown.FilterItem = withDropdownContext(FilterItem);
+ActionableDropdownUsingChildrenRefs.propTypes = propTypes;
 
-export default ApplyDropdown;
+ActionableDropdownUsingChildrenRefs.EditableItem = withDropdownContext(
+  EditableItem
+);
+
+export default ActionableDropdownUsingChildrenRefs;

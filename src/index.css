@@ -1,3 +1,4 @@
+/* TODO: delete me */
 body {
   margin: 0;
   padding: 0;
@@ -37,7 +38,7 @@ body {
 
 .App-applied-filters .label {
   margin-left: 5px;
-  padding: .5em;
+  padding: 0.5em;
   font-size: 80%;
 }
 

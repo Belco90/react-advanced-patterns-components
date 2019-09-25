@@ -1,6 +1,6 @@
 {
-  "short_name": "React example",
-  "name": "React Context API example",
+  "short_name": "React Advanced Patterns",
+  "name": "React: advanced patterns components",
   "icons": [
     {
       "src": "favicon.ico",

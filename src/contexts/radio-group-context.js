@@ -2,13 +2,11 @@ import React from 'react';
 
 const RadioGroupContext = React.createContext();
 
-const RadioGroupProvider = ({ children, ...remainingProps }) => {
-  return (
-    <RadioGroupContext.Provider value={remainingProps}>
-      {children}
-    </RadioGroupContext.Provider>
-  );
-};
+const RadioGroupProvider = ({ children, ...remainingProps }) => (
+  <RadioGroupContext.Provider value={remainingProps}>
+    {children}
+  </RadioGroupContext.Provider>
+);
 
 const RadioGroupConsumer = ({ children }) => (
   <RadioGroupContext.Consumer>
