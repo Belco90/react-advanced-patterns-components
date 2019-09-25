@@ -11,7 +11,6 @@ const makeRadioPickerGroup = (props = {}) => () => {
   const [value, setValue] = React.useState('a');
 
   const handleChange = event => {
-    console.log('handleChange');
     setValue(event.target.value);
   };
 
