@@ -15,11 +15,14 @@ const ActionableDropdownUsingHooks = ({ id, title, children }) => {
 
   const { current: editableChildren } = React.useRef([]);
 
-  const handleRef = React.useCallback(editableItem => {
-    if (editableItem) {
-      editableChildren.push(editableItem);
-    }
-  }, []);
+  const handleRef = React.useCallback(
+    editableItem => {
+      if (editableItem) {
+        editableChildren.push(editableItem);
+      }
+    },
+    [editableChildren]
+  );
 
   const handleDropdownToggle = (newIsOpen, event) => {
     if (typeof event !== 'undefined') {
