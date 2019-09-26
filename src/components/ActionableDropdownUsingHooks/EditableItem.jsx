@@ -9,6 +9,14 @@ const propTypes = {
   onApply: PropTypes.func.isRequired,
 };
 
+/*
+THIS COMPONENT DOESN'T WORK TOGETHER WITH CHILDREN REF MECHANISM
+
+ActionableDropdown will try to access to instance
+methods from component ref but functional components don't have neither refs nor
+instance methods!!!
+ */
+
 const EditableItem = ({ children, value, onChange, onApply }) => {
   const [modifiedValue, setModifiedValue] = React.useState(value);
 
