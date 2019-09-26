@@ -62,6 +62,7 @@ class Example extends React.Component {
               {': '}
               {filter.value.toString()}{' '}
               <button
+                type="button"
                 className={styles.removeTagButton}
                 onClick={this.handleTagClick}
                 value={filter.name}

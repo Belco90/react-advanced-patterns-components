@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Dropdown, MenuItem, ButtonToolbar, Button } from 'react-bootstrap';
 
 import EditableItem from './EditableItem';
@@ -33,9 +32,14 @@ class ActionableDropdownUsingChildrenRefs extends React.Component {
 
   handleDropdownToggle = (isOpen, event) => {
     if (typeof event !== 'undefined') {
+      const { dropdownOpen } = this.state;
       const newState = { dropdownOpen: isOpen };
 
-      if (isOpen) {
+      // if toggled, restore:
+      // - it has to restore on close as action is cancelled
+      // - it has to restore on open in case filters were updated from outside
+      //   while the dropdown was closed so it gets most recent values
+      if (isOpen !== dropdownOpen) {
         this.childrenFilters.forEach(filter => {
           filter.restoreFilter();
         });
