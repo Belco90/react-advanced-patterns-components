@@ -23,4 +23,16 @@ const withDropdownContext = Component => props => (
   </DropdownContext.Consumer>
 );
 
-export { DropdownProvider, withDropdownContext };
+const useDropdownContext = () => {
+  const context = React.useContext(DropdownContext);
+
+  if (context === undefined) {
+    throw new Error(
+      'useDropdownContext must be used within a DropdownProvider'
+    );
+  }
+
+  return context;
+};
+
+export { DropdownProvider, withDropdownContext, useDropdownContext };

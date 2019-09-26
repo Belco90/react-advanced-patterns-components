@@ -2,32 +2,33 @@ import React from 'react';
 import { Dropdown, MenuItem, ButtonToolbar, Button } from 'react-bootstrap';
 
 import EditableItem from './EditableItem';
-import { withDropdownContext, DropdownProvider } from './dropdown-context';
+import {
+  withDropdownContext,
+  DropdownProvider,
+} from 'contexts/dropdown-context';
 
 import styles from 'components/ActionableDropdown.module.css';
-
-const propTypes = {};
 
 class ActionableDropdownUsingChildrenRefs extends React.Component {
   state = {
     dropdownOpen: false,
-    filtersChanged: false,
+    pendingToApply: false,
   };
 
   constructor(props) {
     super(props);
 
     // keep refs to each EditableItem child
-    this.childrenFilters = [];
+    this.editableChildren = [];
 
-    this.filterContext = {
+    this.editableItemContext = {
       getComponentRef: this.handleRef,
-      onChange: this.updateFiltersChanged,
+      onChange: this.handleEditableItemChange,
     };
   }
 
-  handleRef = filter => {
-    this.childrenFilters.push(filter);
+  handleRef = editableItem => {
+    this.editableChildren.push(editableItem);
   };
 
   handleDropdownToggle = (isOpen, event) => {
@@ -35,15 +36,15 @@ class ActionableDropdownUsingChildrenRefs extends React.Component {
       const { dropdownOpen } = this.state;
       const newState = { dropdownOpen: isOpen };
 
-      // if toggled, restore:
+      // if toggling, always restore:
       // - it has to restore on close as action is cancelled
-      // - it has to restore on open in case filters were updated from outside
-      //   while the dropdown was closed so it gets most recent values
+      // - it has to restore on open in case editable items were updated from
+      //   outside while the dropdown was closed so it gets most recent values
       if (isOpen !== dropdownOpen) {
-        this.childrenFilters.forEach(filter => {
-          filter.restoreFilter();
+        this.editableChildren.forEach(editableItem => {
+          editableItem.restoreValue();
         });
-        newState.filtersChanged = false;
+        newState.pendingToApply = false;
       }
 
       this.setState(newState);
@@ -55,11 +56,11 @@ class ActionableDropdownUsingChildrenRefs extends React.Component {
 
     this.setState({
       dropdownOpen: false,
-      filtersChanged: false,
+      pendingToApply: false,
     });
 
-    this.childrenFilters.forEach(filter => {
-      filter.restoreFilter();
+    this.editableChildren.forEach(editableItem => {
+      editableItem.restoreValue();
     });
   };
 
@@ -68,22 +69,24 @@ class ActionableDropdownUsingChildrenRefs extends React.Component {
 
     this.setState({
       dropdownOpen: false,
-      filtersChanged: false,
+      pendingToApply: false,
     });
 
-    this.childrenFilters.forEach(filter => {
-      filter.applyFilter();
+    this.editableChildren.forEach(editableItem => {
+      editableItem.applyValue();
     });
   };
 
-  updateFiltersChanged = () => {
-    const changed = this.childrenFilters.some(filter => filter.hasChanged());
+  handleEditableItemChange = () => {
+    const changed = this.editableChildren.some(editableItem =>
+      editableItem.hasChanged()
+    );
 
-    this.setState({ filtersChanged: changed });
+    this.setState({ pendingToApply: changed });
   };
 
   render() {
-    const { dropdownOpen, filtersChanged } = this.state;
+    const { dropdownOpen, pendingToApply } = this.state;
 
     return (
       <Dropdown
@@ -95,7 +98,7 @@ class ActionableDropdownUsingChildrenRefs extends React.Component {
 
         <Dropdown.Menu>
           <div className={styles.menu}>
-            <DropdownProvider {...this.filterContext}>
+            <DropdownProvider {...this.editableItemContext}>
               {this.props.children}
             </DropdownProvider>
           </div>
@@ -112,9 +115,9 @@ class ActionableDropdownUsingChildrenRefs extends React.Component {
             </Button>
             <Button
               bsSize="small"
-              bsStyle={filtersChanged ? 'success' : 'default'}
+              bsStyle={pendingToApply ? 'success' : 'default'}
               onClick={this.handleApplyClick}
-              disabled={!filtersChanged}
+              disabled={!pendingToApply}
             >
               Apply
             </Button>
@@ -124,8 +127,6 @@ class ActionableDropdownUsingChildrenRefs extends React.Component {
     );
   }
 }
-
-ActionableDropdownUsingChildrenRefs.propTypes = propTypes;
 
 ActionableDropdownUsingChildrenRefs.EditableItem = withDropdownContext(
   EditableItem

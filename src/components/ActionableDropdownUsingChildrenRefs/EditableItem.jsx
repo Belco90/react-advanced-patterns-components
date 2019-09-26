@@ -17,11 +17,11 @@ class EditableItem extends React.Component {
     this.setState({ modifiedValue: value }, this.props.onChange);
   };
 
-  restoreFilter() {
+  restoreValue() {
     this.setState({ modifiedValue: this.props.value });
   }
 
-  applyFilter() {
+  applyValue() {
     this.props.onApply(this.state.modifiedValue);
   }
 
