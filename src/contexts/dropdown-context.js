@@ -8,23 +8,6 @@ const DropdownProvider = ({ children, ...remainingProps }) => (
   </DropdownContext.Provider>
 );
 
-/*
-const withDropdownContext = Component => props => (
-  <DropdownContext.Consumer>
-    {context => {
-      if (context === undefined) {
-        throw new Error(
-          'withDropdownContext must be used within a DropdownProvider'
-        );
-      }
-
-      const { getComponentRef, onChange } = context;
-      return <Component {...props} ref={getComponentRef} onChange={onChange} />;
-    }}
-  </DropdownContext.Consumer>
-);
- */
-
 const withDropdownContext = Component => {
   class ComponentWithDropdownContext extends React.PureComponent {
     render() {
