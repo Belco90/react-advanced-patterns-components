@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import isEqual from 'lodash.isequal';
 
 const propTypes = {
+  children: PropTypes.node.isRequired,
   value: PropTypes.any.isRequired,
   onChange: PropTypes.func.isRequired,
   onApply: PropTypes.func.isRequired,
