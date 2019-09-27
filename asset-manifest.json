@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/react-advanced-patterns-components/main.css",
+    "main.js": "/react-advanced-patterns-components/main.563f1b57e1481d0a3116.bundle.js",
+    "main.css.map": "/react-advanced-patterns-components/main.css.map",
+    "main.js.map": "/react-advanced-patterns-components/main.563f1b57e1481d0a3116.bundle.js.map",
+    "runtime~main.js": "/react-advanced-patterns-components/runtime~main.563f1b57e1481d0a3116.bundle.js",
+    "runtime~main.js.map": "/react-advanced-patterns-components/runtime~main.563f1b57e1481d0a3116.bundle.js.map",
+    "vendors~main.css": "/react-advanced-patterns-components/vendors~main.css",
+    "vendors~main.js": "/react-advanced-patterns-components/vendors~main.563f1b57e1481d0a3116.bundle.js",
+    "vendors~main.css.map": "/react-advanced-patterns-components/vendors~main.css.map",
+    "vendors~main.js.map": "/react-advanced-patterns-components/vendors~main.563f1b57e1481d0a3116.bundle.js.map",
+    "iframe.html": "/react-advanced-patterns-components/iframe.html",
+    "precache-manifest.1ba1df35218123ca3cd06a0c6d9ca454.js": "/react-advanced-patterns-components/precache-manifest.1ba1df35218123ca3cd06a0c6d9ca454.js",
+    "service-worker.js": "/react-advanced-patterns-components/service-worker.js",
+    "static/media/bootstrap.min.css": "/react-advanced-patterns-components/static/media/glyphicons-halflings-regular.fa277232.woff"
+  }
+}
