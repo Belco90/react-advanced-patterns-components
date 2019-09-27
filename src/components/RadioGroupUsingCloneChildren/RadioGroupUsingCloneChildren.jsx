@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Radio } from 'react-bootstrap';
 
 const propTypes = {
   selectedValue: PropTypes.string.isRequired,
@@ -36,7 +35,7 @@ class RadioGroupUsingCloneChildren extends React.Component {
             name,
             inline,
             disabled,
-            checked: child.props.value === selectedValue,
+            checked: child.props.value === selectedValue, // <-- where magic happens
           })
         )}
       </fieldset>
@@ -46,6 +45,5 @@ class RadioGroupUsingCloneChildren extends React.Component {
 
 RadioGroupUsingCloneChildren.propTypes = propTypes;
 RadioGroupUsingCloneChildren.defaultProps = defaultProps;
-RadioGroupUsingCloneChildren.Choice = Radio;
 
 export default RadioGroupUsingCloneChildren;

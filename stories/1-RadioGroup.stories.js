@@ -1,4 +1,5 @@
 import React from 'react';
+import { Radio } from 'react-bootstrap';
 
 import RadioGroupUsingCloneChildren from 'components/RadioGroupUsingCloneChildren';
 import RadioGroupUsingClassComponent from 'components/RadioGroupUsingClassComponent';
@@ -23,7 +24,26 @@ const makeRadioGroup = Component => () => {
     </Component>
   );
 };
-export const usingCloneChildren = makeRadioGroup(RadioGroupUsingCloneChildren);
+export const usingCloneChildren = () => {
+  const [value, setValue] = React.useState('a');
+
+  const handleChange = event => {
+    setValue(event.target.value);
+  };
+
+  return (
+    <RadioGroupUsingCloneChildren
+      selectedValue={value}
+      name="RadioGroup"
+      onChange={handleChange}
+    >
+      <Radio value="a">option A</Radio>
+      <Radio value="b">option B</Radio>
+      <Radio value="c">option C</Radio>
+    </RadioGroupUsingCloneChildren>
+  );
+};
+
 export const usingClassComponent = makeRadioGroup(
   RadioGroupUsingClassComponent
 );
