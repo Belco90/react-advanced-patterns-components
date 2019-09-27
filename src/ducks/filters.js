@@ -14,6 +14,9 @@ const filtersSlice = createSlice({
     clearAllFilters: state => {
       Object.assign(state, initialState);
     },
+    setFilters: (state, { payload }) => {
+      Object.assign(state, payload);
+    },
     setFiltersContent: (state, { payload }) => {
       state.content = payload;
     },
@@ -31,6 +34,7 @@ const filtersSlice = createSlice({
 
 export const {
   clearAllFilters,
+  setFilters,
   setFiltersContent,
   setFiltersStars,
   setFiltersLocation,

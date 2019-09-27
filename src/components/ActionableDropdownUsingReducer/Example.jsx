@@ -2,12 +2,7 @@ import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import {
-  setFiltersAge,
-  setFiltersContent,
-  setFiltersLocation,
-  setFiltersStars,
-} from 'ducks/filters';
+import { setFilters } from 'ducks/filters';
 import ContentFilter from 'components/ContentFilter';
 import LocationFilter from 'components/LocationFilter';
 import StarsFilter from 'components/StarsFilter';
@@ -17,20 +12,10 @@ import AppliedFiltersBar from 'components/AppliedFiltersBar';
 import ActionableDropdown from './ActionableDropdownUsingReducer';
 
 const Example = props => {
-  const {
-    values,
-    setFiltersContent,
-    setFiltersLocation,
-    setFiltersStars,
-    setFiltersAge,
-  } = props;
+  const { values, setFilters } = props;
 
   const handleApplyFilters = newValues => {
-    // TODO: merge into one setter
-    setFiltersContent(newValues.content);
-    setFiltersLocation(newValues.location);
-    setFiltersStars(newValues.stars);
-    setFiltersAge(newValues.age);
+    setFilters(newValues);
   };
 
   return (
@@ -80,10 +65,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  setFiltersContent,
-  setFiltersStars,
-  setFiltersLocation,
-  setFiltersAge,
+  setFilters,
 };
 
 export default connect(
