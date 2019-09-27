@@ -11,16 +11,15 @@ const ActionableDropdownUsingStateInitializers = ({
   id,
   title,
   children,
-  values,
+  values: appliedValues,
   onApply,
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
   const [isPendingToApply, setIsPendingToApply] = React.useState(false);
-  const [draftValues, setDraftValues] = React.useState(values);
-
-  const appliedValues = React.useMemo(() => values, [values]);
+  const [draftValues, setDraftValues] = React.useState(appliedValues);
 
   // re-init every time applied values are updated from outside
+  // (state initializer)
   React.useEffect(() => {
     setDraftValues(appliedValues);
     setIsPendingToApply(false);
