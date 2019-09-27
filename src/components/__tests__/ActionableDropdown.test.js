@@ -5,11 +5,13 @@ import { renderWithRedux } from 'utils';
 import { ExampleUsingChildrenRefs } from 'components/ActionableDropdownUsingChildrenRefs';
 import { ExampleUsingHooks } from 'components/ActionableDropdownUsingHooks';
 import { ExampleUsingStateInitializers } from 'components/ActionableDropdownUsingStateInitializers';
+import { ExampleUsingReducer } from 'components/ActionableDropdownUsingReducer';
 
 const componentMapping = {
   ExampleUsingChildrenRefs,
   ExampleUsingHooks,
   ExampleUsingStateInitializers,
+  ExampleUsingReducer,
 };
 
 describe.each`
@@ -17,6 +19,7 @@ describe.each`
   ${'ExampleUsingChildrenRefs'}      | ${true}
   ${'ExampleUsingHooks'}             | ${true}
   ${'ExampleUsingStateInitializers'} | ${false}
+  ${'ExampleUsingReducer'}           | ${false}
 `(
   '$componentName component',
   ({ componentName, needsToReopenForRestoring }) => {
@@ -217,9 +220,9 @@ describe.each`
       expect(getByTestId('testing-form')).toHaveFormValues({
         min: null,
         max: null,
-        starred: true,
         location: '',
         content: '', // <-- this has been restored now!
+        starred: true, // <-- but this should remain the same
       });
     });
 
