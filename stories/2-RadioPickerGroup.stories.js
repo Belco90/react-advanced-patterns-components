@@ -32,7 +32,7 @@ export const defaultComponent = makeRadioPickerGroup();
 export const successEmphasis = makeRadioPickerGroup({ emphasis: 'success' });
 export const dangerEmphasis = makeRadioPickerGroup({ emphasis: 'danger' });
 
-export const hidingRadioIndicator = () => {
+export const HidingRadioIndicator = () => {
   const [value, setValue] = React.useState('a');
 
   const handleChange = event => {
@@ -62,7 +62,7 @@ export const hidingRadioIndicator = () => {
   );
 };
 
-export const showingConditionalElements = () => {
+export const ShowingConditionalElements = () => {
   const [value, setValue] = React.useState('a');
 
   const handleChange = event => {

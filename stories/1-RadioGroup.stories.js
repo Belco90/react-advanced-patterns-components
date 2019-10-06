@@ -24,7 +24,7 @@ const makeRadioGroup = Component => () => {
     </Component>
   );
 };
-export const usingCloneChildren = () => {
+export const UsingCloneChildren = () => {
   const [value, setValue] = React.useState('a');
 
   const handleChange = event => {
